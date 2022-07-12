@@ -2,16 +2,19 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
+//import 'package:map_app/provider/location_provider.dart';
+
+
 
 class LocationProvider with ChangeNotifier {
   late Location _location;
   Location get location => _location;
-  LatLng  _locationPosition;
+  late LatLng _locationPosition;
   LatLng get locationPosition => _locationPosition;
 
   bool locationServiceActive = true;
 
-  LocationProvider(){
+  LocationProvider() {
     _location = new Location();
   }
 
@@ -42,8 +45,8 @@ class LocationProvider with ChangeNotifier {
 
     location.onLocationChanged.listen((LocationData currentLocation) {
       _locationPosition = LatLng(
-        currentLocation.latitude,
-        currentLocation.longitude,
+        currentLocation.latitude!,
+        currentLocation.longitude!,
       );
 
       print(_locationPosition);
